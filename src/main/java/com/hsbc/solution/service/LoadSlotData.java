@@ -7,11 +7,13 @@ import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -28,9 +30,14 @@ public class LoadSlotData {
     @EventListener
     public static void loadData(ContextRefreshedEvent event) {
         SimpleDateFormat simpleDateFormat =  new SimpleDateFormat("dd-mm-YYYY HH:mm:ss");
-        File file = new File("C:\\Users\\Apurv\\IdeaProjects\\hpark\\src\\main\\resources\\Simulation_data.xlsx");
+
+        ClassPathResource resource = new ClassPathResource("Simulation_data.xlsx");
+
+
+        //File file = new File("./Simulation_data.xlsx");
         try{
-            FileInputStream stream = new FileInputStream(file);
+            //FileInputStream stream = new FileInputStream(file);
+            InputStream stream =  resource.getInputStream();
             Workbook workbook = new XSSFWorkbook(stream);
             Sheet sheet = workbook.getSheet("HatchBack");
             int firstRow = sheet.getFirstRowNum();
