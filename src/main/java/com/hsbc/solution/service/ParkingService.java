@@ -1,17 +1,10 @@
 package com.hsbc.solution.service;
 
 import com.hsbc.solution.model.Data;
+import com.hsbc.solution.model.MapData;
 import com.hsbc.solution.model.ResponseData;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.stereotype.Service;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeParseException;
@@ -51,11 +44,14 @@ public class ParkingService {
         ResponseData rdata = new ResponseData();
 
         if(data.getCarType().equals("suv")){
-            rdata.setAvailableSlots(getValueForApproximateDate(LoadSlotData.sMap,data.getDateTime()));
+            rdata.setAvailableSlots(getValueForApproximateDate(LoadSlotData.sMap,data.getDateTime()).getSlots());
             rdata.setTotalSlots(300);
+            rdata.setAvailablePercent(getValueForApproximateDate(LoadSlotData.sMap,data.getDateTime()).getTarget());
+
         }else {
-            rdata.setAvailableSlots(getValueForApproximateDate(LoadSlotData.hMap,data.getDateTime()));
+            rdata.setAvailableSlots(getValueForApproximateDate(LoadSlotData.hMap,data.getDateTime()).getSlots());
             rdata.setTotalSlots(719);
+            rdata.setAvailablePercent(getValueForApproximateDate(LoadSlotData.hMap,data.getDateTime()).getTarget());
         }
 
 
@@ -65,7 +61,7 @@ public class ParkingService {
 
 
     // Custom method to get a value for an approximate date
-    private static Long getValueForApproximateDate(Map<String, Long> map, String approximateDate) {
+    private static MapData getValueForApproximateDate(Map<String, MapData> map, String approximateDate) {
         // Iterate through the keys and find the closest date
         String closestDate = null;
         long minDifference = Long.MAX_VALUE;

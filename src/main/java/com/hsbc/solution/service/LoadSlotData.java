@@ -1,5 +1,6 @@
 package com.hsbc.solution.service;
 
+import com.hsbc.solution.model.MapData;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -22,9 +23,9 @@ import java.util.Map;
 @Service
 public class LoadSlotData {
 
-    public static Map<String, Long> hMap = new HashMap();
+    public static Map<String, MapData> hMap = new HashMap();
 
-    public static Map<String, Long> sMap = new HashMap();
+    public static Map<String, MapData> sMap = new HashMap();
 
 
     @EventListener
@@ -49,8 +50,12 @@ public class LoadSlotData {
                 String date = simpleDateFormat.format(cellDate.getDateCellValue());
                 Cell cellSlots = row.getCell(1);
                 long slots = (long) cellSlots.getNumericCellValue();
+                //System.out.println("Slot data is " + slots);
 
-                hMap.put(date,slots);
+                Cell cellTarget = row.getCell(2);
+                double target = (double) cellTarget.getNumericCellValue();
+                hMap.put(date,new MapData(date,target+"",slots,719));
+
 
             }
 
@@ -68,7 +73,10 @@ public class LoadSlotData {
                 Cell scellSlots = srow.getCell(1);
                 long sslots = (long) scellSlots.getNumericCellValue();
 
-                sMap.put(sdate, sslots);
+                Cell scellTarget = srow.getCell(2);
+                double starget = (double) scellTarget.getNumericCellValue();
+                sMap.put(sdate, new MapData(sdate,starget+"",sslots,300));
+
 
             }
 

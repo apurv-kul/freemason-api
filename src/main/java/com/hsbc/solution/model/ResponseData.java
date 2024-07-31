@@ -11,6 +11,34 @@ public class ResponseData implements Serializable {
     private long totalSlots;
     private long availableSlots;
 
+
+   // private long availablePercent;
+    private String availablePercent;
+
+/*    public long getAvailablePercent() {
+        return availablePercent;
+    }
+
+    public void setAvailablePercent(long availablePercent) {
+        this.availablePercent = availablePercent;
+    }*/
+
+
+
+    public String getAvailablePercent() {
+        return availablePercent;
+    }
+
+    public void setAvailablePercent(String availablePercent) {
+        this.availablePercent = availablePercent;
+    }
+
+
+
+
+
+
+
     public long getTotalSlots() {
         return totalSlots;
     }
