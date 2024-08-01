@@ -40,10 +40,10 @@ public class Data {
     public String toString() {
 
         //Data{dateTime='01-01-2024 08:42:00', carType='suv'}
-        return "\n{\n" +
-                "    \"dateTime\":\"" + dateTime + '\"' +","+
-                "    \n    \"carType\":\"" + carType + '\"' +","+
-                "    \n    \"imeiNumber\":\"" + imeiNumber + '\"' +
-                "\n}";
+        return "{" +
+                "\"dateTime\":\"" + dateTime + '\"' +","+
+                "\"carType\":\"" + carType + '\"' +","+
+                "\"imeiNumber\":\"" + imeiNumber + '\"' +
+                "}";
     }
 }
