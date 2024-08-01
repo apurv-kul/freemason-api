@@ -10,6 +10,7 @@ public class Data {
 
     private String dateTime;
     private String carType;
+    private String imeiNumber;
 
     public String getCarType() {
         return carType;
@@ -27,11 +28,22 @@ public class Data {
         this.dateTime = dateTime;
     }
 
+    public String getImeiNumber() {
+        return imeiNumber;
+    }
+
+    public void setImeiNumber(String imeiNumber) {
+        this.imeiNumber = imeiNumber;
+    }
+
     @Override
     public String toString() {
-        return "Data{" +
-                "dateTime='" + dateTime + '\'' +
-                ", carType='" + carType + '\'' +
-                '}';
+
+        //Data{dateTime='01-01-2024 08:42:00', carType='suv'}
+        return "\n{\n" +
+                "    \"dateTime\":\"" + dateTime + '\"' +","+
+                "    \n    \"carType\":\"" + carType + '\"' +","+
+                "    \n    \"imeiNumber\":\"" + imeiNumber + '\"' +
+                "\n}";
     }
 }

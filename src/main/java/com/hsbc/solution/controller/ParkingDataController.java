@@ -27,11 +27,8 @@ public class ParkingDataController {
     @PostMapping(path = "/getParkingData")
     public ResponseData getSlots(@RequestBody Data data) {
 
-        //log.info(data.toString());
-        //const myJSON = JSON.stringify(data);
-        //log.info("Car type is "+ data.getCarType());
-        //JSONObject jsonObject= new JSONObject();
-        //log.info("Request is " + jsonObject.toString());
+        log.info(data.toString());
+
         return service.getSlots(data);
     }
 
