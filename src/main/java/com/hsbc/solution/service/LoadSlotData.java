@@ -30,7 +30,7 @@ public class LoadSlotData {
 
     @EventListener
     public static void loadData(ContextRefreshedEvent event) {
-        SimpleDateFormat simpleDateFormat =  new SimpleDateFormat("dd-mm-YYYY HH:mm:ss");
+        SimpleDateFormat simpleDateFormat =  new SimpleDateFormat("dd-MM-YYYY HH:mm:ss");
 
         ClassPathResource resource = new ClassPathResource("Simulation_data.xlsx");
 
@@ -75,6 +75,9 @@ public class LoadSlotData {
 
                 Cell scellTarget = srow.getCell(2);
                 double starget = (double) scellTarget.getNumericCellValue();
+
+                System.out.println("Date "+sdate+" MapData"+new MapData(sdate,starget+"",sslots,300).toString()+" Row "+sindex);
+
                 sMap.put(sdate, new MapData(sdate,starget+"",sslots,300));
 
 

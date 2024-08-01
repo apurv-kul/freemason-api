@@ -49,4 +49,14 @@ public class MapData {
     public void setTotalSlots(long totalSlots) {
         this.totalSlots = totalSlots;
     }
+
+    @Override
+    public String toString() {
+        return "MapData{" +
+                "date='" + date + '\'' +
+                ", target='" + target + '\'' +
+                ", slots=" + slots +
+                ", totalSlots=" + totalSlots +
+                '}';
+    }
 }

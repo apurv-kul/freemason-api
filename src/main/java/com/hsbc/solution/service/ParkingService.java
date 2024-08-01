@@ -44,6 +44,10 @@ public class ParkingService {
         ResponseData rdata = new ResponseData();
 
         if(data.getCarType().equals("suv")){
+
+            System.out.println(getValueForApproximateDate(LoadSlotData.sMap,data.getDateTime()).toString());
+
+
             rdata.setAvailableSlots(getValueForApproximateDate(LoadSlotData.sMap,data.getDateTime()).getSlots());
             rdata.setTotalSlots(300);
             rdata.setAvailablePercent(getValueForApproximateDate(LoadSlotData.sMap,data.getDateTime()).getTarget());
